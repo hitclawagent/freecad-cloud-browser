@@ -2,8 +2,8 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: Milestone complete
-last_updated: "2026-05-03T09:39:23.603Z"
+status: v1.0 milestone complete
+last_updated: "2026-05-03T10:41:32.472Z"
 last_activity: 2026-05-03
 progress:
   total_phases: 4
@@ -18,16 +18,23 @@ progress:
 ## Project: FreeCAD Cloud Browser Plugin
 
 **Last Activity:** 2026-05-03
-**Current Milestone:** Milestone 1 — Stable & Polished Plugin
+**Status:** v1.0 milestone complete — ready for v1.1 planning
 
-## Phase Status
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-05-03)
+
+**Core value:** Seamless cloud file access without leaving FreeCAD
+**Current focus:** Planning next milestone (v1.1)
+
+## Milestone v1.0 — Complete
 
 | Phase | Name | Status | Plans |
 |-------|------|--------|-------|
 | 1 | Core Bug Fixes & Code Quality | Complete | — |
-| 2 | UI Polish & Accessibility | In Progress | — |
-| 3 | Security Hardening | Planned | — |
-| 4 | Testing & Verification | Planned | — |
+| 2 | UI Polish & Accessibility | Complete | — |
+| 3 | Security Hardening | Complete | 1/1 |
+| 4 | Testing & Verification | Complete | 3/3 |
 
 ## Key Decisions
 
