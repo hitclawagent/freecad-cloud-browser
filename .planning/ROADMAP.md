@@ -57,9 +57,9 @@ Requirements: REQ-020
 **Plans:** 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Unit tests for ConfigStore and FileCache (REQ-030)
-- [ ] 04-02-PLAN.md — Unit tests for AuthManager credential tiers (REQ-030)
-- [ ] 04-03-PLAN.md — Provider smoke tests for list_directory and upload_file (REQ-031)
+- [x] 04-01-PLAN.md — Unit tests for ConfigStore and FileCache (REQ-030)
+- [x] 04-02-PLAN.md — Unit tests for AuthManager credential tiers (REQ-030)
+- [x] 04-03-PLAN.md — Provider smoke tests for list_directory and upload_file (REQ-031)
 
 Files:
 - tests/
