@@ -54,6 +54,12 @@ Requirements: REQ-020
 ### Phase 4: Testing & Verification
 **Goal:** Add unit tests for core modules (config_store, auth_manager, file_cache) and integration smoke tests for each provider's list_directory and upload_file methods.
 **Status:** Planned
+**Plans:** 3 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Unit tests for ConfigStore and FileCache (REQ-030)
+- [ ] 04-02-PLAN.md — Unit tests for AuthManager credential tiers (REQ-030)
+- [ ] 04-03-PLAN.md — Provider smoke tests for list_directory and upload_file (REQ-031)
 
 Files:
 - tests/
