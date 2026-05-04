@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Cloud shape -->
+  <path d="M48 28a12 12 0 0 0-23.2-4.4A10 10 0 1 0 14 38h34a10 10 0 0 0 0-20z"
+        fill="#4A90D9" stroke="#2C6FAC" stroke-width="1.5"/>
+  <!-- Arrow down -->
+  <rect x="29" y="36" width="6" height="12" rx="1.5" fill="white"/>
+  <polygon points="22,46 32,58 42,46" fill="white"/>
+</svg>

@@ -1,0 +1,30 @@
+# Core dependencies (always needed)
+requests>=2.31.0,<3.0
+
+# Google Drive
+google-api-python-client>=2.100.0,<3.0
+google-auth-httplib2>=0.1.1,<1.0
+google-auth-oauthlib>=1.1.0,<2.0
+
+# Dropbox
+dropbox>=11.36.0,<13.0
+
+# OneDrive (Microsoft Graph)
+msal>=1.24.0,<2.0
+
+# Amazon S3
+boto3>=1.28.0,<2.0
+
+# SFTP support (FTP uses stdlib ftplib)
+paramiko>=3.3.0,<4.0
+
+# WebDAV
+webdavclient3>=3.14.6,<4.0
+
+# Optional: system keychain for secure credential storage (recommended)
+keyring>=24.0.0,<26.0
+
+# Optional: Fernet encryption for credentials when keyring is unavailable.
+# Without keyring AND cryptography, credentials are stored as base64 (insecure).
+# Install at minimum one of: keyring or cryptography.
+cryptography>=41.0.0,<44.0
