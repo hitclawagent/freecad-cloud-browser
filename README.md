@@ -58,7 +58,8 @@ All formats natively supported by FreeCAD are shown:
 1. Go to [Google Cloud Console](https://console.cloud.google.com)
 2. Create a project → Enable the **Google Drive API**
 3. Create **OAuth 2.0 Credentials** (Desktop app type)
-4. Copy the **Client ID** and **Client Secret** into the plugin dialog
+4. Under **Authorized redirect URIs** add exactly: `http://localhost:8085`
+5. Copy the **Client ID** and **Client Secret** into the plugin dialog
 
 ### Dropbox
 

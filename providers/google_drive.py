@@ -107,7 +107,9 @@ class GoogleDriveProvider(CloudProvider):
                         }
                     }
                     flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
-                    creds = flow.run_local_server(port=0)
+                    # Use a fixed port so the redirect URI is predictable.
+                    # In Google Cloud Console add: http://localhost:8085
+                    creds = flow.run_local_server(port=8085)
 
                 # Persist token back to config
                 self.config[TOKEN_FILE_KEY] = creds.to_json()
