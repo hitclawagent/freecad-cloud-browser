@@ -11,3 +11,4 @@ build/
 .planning/
 01-UI-REVIEW.md
 .planning/
+install_deps.py

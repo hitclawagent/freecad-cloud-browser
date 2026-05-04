@@ -1,18 +1,106 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<package format="1" xmlns="https://wiki.freecad.org/Package_Metadata">
-  <name>FreeCAD Cloud Browser</name>
-  <description>Browse and open files from cloud storage providers (Google Drive, Dropbox, OneDrive, Amazon S3, FTP/SFTP, WebDAV/Nextcloud) directly from FreeCAD without leaving the application.</description>
-  <version>1.0.0</version>
-  <date>2026-05-04</date>
-  <maintainer email="hitclawagent@gmail.com">hitclawagent</maintainer>
-  <license>MIT</license>
-  <url type="repository">https://github.com/hitclawagent/freecad-cloud-browser</url>
-  <url type="readme">https://github.com/hitclawagent/freecad-cloud-browser/blob/main/README.md</url>
+<?xml
+    version = '1.0'
+    encoding = 'UTF-8'
+    standalone = 'no'
+?>
+<package
+    format = '1'
+    xmlns = 'https://wiki.freecad.org/Package_Metadata'
+>
 
-  <content>
-    <workbench>
-      <classname>CloudBrowserWorkbench</classname>
-      <subdirectory>./</subdirectory>
-    </workbench>
-  </content>
+    <!--[ Versions ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <freecadmin>1.0.0</freecadmin>
+    <pythonmin>3.9</pythonmin>
+    <version>1.0.0</version>
+    <date>2026-05-04</date>
+
+    <!--[ Info ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <name>FreeCAD Cloud Browser</name>
+    <description>Browse and open files from cloud storage (Google Drive, Dropbox, OneDrive, Amazon S3, FTP/SFTP, WebDAV/Nextcloud) directly from FreeCAD — no manual download/upload needed. Supports OAuth2, access-key, and username/password authentication depending on the provider.</description>
+
+    <!--[ Tags ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <tag>cloud</tag>
+    <tag>storage</tag>
+    <tag>google-drive</tag>
+    <tag>dropbox</tag>
+    <tag>onedrive</tag>
+    <tag>s3</tag>
+    <tag>ftp</tag>
+    <tag>sftp</tag>
+    <tag>webdav</tag>
+    <tag>nextcloud</tag>
+    <tag>browser</tag>
+
+    <!--[ Maintainers ]――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <maintainer
+        email = 'hitclawagent@gmail.com'
+    >hitclawagent</maintainer>
+
+    <!--[ Licenses ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <license
+        file = 'LICENSE'
+    >MIT</license>
+
+    <!--[ Icon ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <icon>resources/icons/cloud_browser.svg</icon>
+
+    <!--[ Urls ]―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <url
+        branch = 'main'
+        type = 'repository'
+    >https://github.com/hitclawagent/freecad-cloud-browser</url>
+
+    <url
+        type = 'bugtracker'
+    >https://github.com/hitclawagent/freecad-cloud-browser/issues</url>
+
+    <url
+        type = 'readme'
+    >https://github.com/hitclawagent/freecad-cloud-browser/blob/main/README.md</url>
+
+    <!--[ Python dependencies ]――――――――――――――――――――――――――――――――――――――――――――――-->
+    <!-- Core: always required -->
+    <depend type = 'python'>requests</depend>
+
+    <!-- Google Drive -->
+    <depend type = 'python'>google-api-python-client</depend>
+    <depend type = 'python'>google-auth-httplib2</depend>
+    <depend type = 'python'>google-auth-oauthlib</depend>
+
+    <!-- Dropbox -->
+    <depend type = 'python'>dropbox</depend>
+
+    <!-- OneDrive -->
+    <depend type = 'python'>msal</depend>
+
+    <!-- Amazon S3 -->
+    <depend type = 'python'>boto3</depend>
+
+    <!-- SFTP -->
+    <depend type = 'python'>paramiko</depend>
+
+    <!-- WebDAV -->
+    <depend type = 'python'>webdavclient3</depend>
+
+    <!-- Secure credential storage (optional but recommended) -->
+    <depend type = 'python'>keyring</depend>
+    <depend type = 'python'>cryptography</depend>
+
+    <!--[ Content ]――――――――――――――――――――――――――――――――――――――――――――――――――――――――――-->
+
+    <content>
+        <workbench>
+            <subdirectory>.</subdirectory>
+            <classname>CloudBrowserWorkbench</classname>
+            <icon>resources/icons/cloud_browser.svg</icon>
+        </workbench>
+    </content>
+
 </package>
