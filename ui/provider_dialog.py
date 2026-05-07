@@ -5,7 +5,7 @@ import os
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtGui import QPalette
 
-from providers import PROVIDER_REGISTRY, PROVIDER_DISPLAY_NAMES, create_provider
+from providers import PROVIDER_REGISTRY, PROVIDER_DISPLAY_NAMES, PROVIDER_COMING_SOON, create_provider
 from core import get_config_store, get_auth_manager
 
 
@@ -51,7 +51,16 @@ class ProviderDialog(QtWidgets.QDialog):
         type_row = QtWidgets.QFormLayout()
         self._type_combo = QtWidgets.QComboBox()
         for ptype, pname in PROVIDER_DISPLAY_NAMES.items():
-            self._type_combo.addItem(pname, ptype)
+            if ptype in PROVIDER_COMING_SOON:
+                self._type_combo.addItem(f"{pname}  (coming soon)", ptype)
+                # Make the item non-selectable and visually grayed-out
+                idx = self._type_combo.count() - 1
+                item_model = self._type_combo.model()
+                item = item_model.item(idx)
+                item.setEnabled(False)
+                item.setForeground(self.palette().color(QPalette.ColorRole.PlaceholderText))
+            else:
+                self._type_combo.addItem(pname, ptype)
         self._type_combo.currentIndexChanged.connect(self._on_provider_changed)
         type_row.addRow("Provider Type:", self._type_combo)
 

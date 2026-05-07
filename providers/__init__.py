@@ -15,6 +15,10 @@ PROVIDER_DISPLAY_NAMES_FULL = {
     "webdav": "WebDAV",
 }
 
+# Providers that are present in the UI as placeholders but not yet enabled.
+# They appear grayed-out in the combo box and cannot be selected.
+PROVIDER_COMING_SOON = {"ftp", "webdav"}
+
 
 def _try_register(key, module_path, class_name):
     try:
@@ -31,10 +35,8 @@ _try_register("s3",     ".s3",     "S3Provider")
 _try_register("ftp",    ".ftp",    "FTPProvider")
 _try_register("webdav", ".webdav", "WebDAVProvider")
 
-# Only expose display names for successfully loaded providers
-PROVIDER_DISPLAY_NAMES = {
-    k: v for k, v in PROVIDER_DISPLAY_NAMES_FULL.items() if k in PROVIDER_REGISTRY
-}
+# Expose display names for all known providers (including coming-soon placeholders)
+PROVIDER_DISPLAY_NAMES = dict(PROVIDER_DISPLAY_NAMES_FULL)
 
 
 def create_provider(provider_type: str, config: dict):
