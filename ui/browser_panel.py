@@ -10,7 +10,7 @@ import FreeCADGui
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtGui import QPalette
 
-from core import get_config_store, get_auth_manager, get_file_cache
+from core import get_config_store, get_auth_manager, get_file_cache, get_sync_manager
 from providers import create_provider, PROVIDER_DISPLAY_NAMES
 
 logger = logging.getLogger(__name__)
@@ -648,10 +648,12 @@ class CloudBrowserDialog(QtWidgets.QDialog):
             remote_item.path,
             safe_name,
         )
+        # The remote directory is the parent of the file path.
+        remote_dir = self._current_remote_dir()
 
         if cache.is_cached(self._provider.provider_type, remote_item.path, safe_name,
                            remote_modified=remote_item.modified):
-            self._open_in_freecad(local_path)
+            self._open_in_freecad(local_path, remote_dir)
             return
 
         # Create a sanitized copy of the remote_item with the safe name
@@ -659,20 +661,23 @@ class CloudBrowserDialog(QtWidgets.QDialog):
 
         worker = DownloadWorker(self._provider, safe_item, local_path, parent=self)
         worker.progress.connect(lambda msg: self._set_status(msg, busy=True))
-        worker.finished.connect(self._on_download_finished)
+        worker.finished.connect(lambda path: self._on_download_finished(path, remote_dir))
         worker.error.connect(lambda err: self._set_status(f"Download error: {err}", error=True))
         worker.finished.connect(lambda _: self._remove_worker(worker))
         worker.error.connect(lambda _: self._remove_worker(worker))
         self._workers.append(worker)
         worker.start()
 
-    def _on_download_finished(self, local_path: str):
+    def _on_download_finished(self, local_path: str, remote_dir: str = ""):
         self._set_status("Download complete")
-        self._open_in_freecad(local_path)
+        self._open_in_freecad(local_path, remote_dir)
 
-    def _open_in_freecad(self, local_path: str):
+    def _open_in_freecad(self, local_path: str, remote_dir: str = ""):
         try:
             FreeCAD.openDocument(local_path)
+            # Register the file with the sync manager so that saves are
+            # automatically mirrored back to the cloud.
+            get_sync_manager().register(local_path, self._provider, remote_dir)
         except Exception as e:
             QtWidgets.QMessageBox.critical(
                 self, "Open Error", f"Failed to open file in FreeCAD:\n{e}"

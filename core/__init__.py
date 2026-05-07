@@ -4,6 +4,7 @@ import threading
 from .config_store import ConfigStore
 from .auth_manager import AuthManager
 from .file_cache import FileCache
+from .sync_manager import SyncManager
 
 # Singletons shared across the plugin session.
 # Protected by an RLock (re-entrant lock) to ensure thread-safe lazy
@@ -39,3 +40,8 @@ def get_file_cache() -> FileCache:
             cache_dir = store.get_setting("cache_dir")
             _file_cache = FileCache(cache_dir)
     return _file_cache
+
+
+def get_sync_manager() -> SyncManager:
+    """Returns the module-level SyncManager singleton."""
+    return SyncManager.instance()
