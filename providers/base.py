@@ -113,9 +113,17 @@ class CloudProvider(ABC):
         """
         ...
 
+    @abstractmethod
     def upload_file(self, local_path: str, remote_dir_path: str) -> bool:
-        """Upload a local file to the given remote directory. Returns True on success."""
-        raise NotImplementedError(f"{self.display_name} does not support upload yet.")
+        """
+        Upload a local file to the given remote directory. Returns True on success.
+
+        IMPORTANT: this method is required by the SyncManager auto-sync feature.
+        Every provider MUST implement it so that files opened from the cloud are
+        automatically re-uploaded when the user saves them in FreeCAD.
+        If upload is temporarily unsupported, raise NotImplementedError with a
+        clear message — do NOT leave the default base-class stub.
+        """
 
     def create_folder(self, remote_dir_path: str, folder_name: str) -> bool:
         """Create a new folder inside remote_dir_path. Returns True on success."""
